@@ -14,6 +14,9 @@ from app.models import db
 from populate_db import populate_without_print
 
 # imports from factories
+
+from app.factories.custom_system_role import CustomSysRoleFactory
+from app.factories.panel_permission import PanelPermissionFactory
 from app.factories.user import UserFactory
 from app.factories.notification_action import NotificationActionFactory
 from app.factories.notification import NotificationFactory
@@ -4156,4 +4159,168 @@ def reset_password_patch(transaction):
         user = UserFactory(is_verified=True)
         user.reset_password = 'token'
         db.session.add(user)
+        db.session.commit()
+
+
+# ------------------------- Custom System Role -------------------------
+
+@hooks.before("Custom System Roles > Custom System Roles Collection > List All Custom System Roles")
+def custom_system_roles_get_list(transaction):
+    """
+    GET /custom-system-roles
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        custom_system_role = CustomSysRoleFactory()
+        db.session.add(custom_system_role)
+        db.session.commit()
+
+
+@hooks.before("Custom System Roles > Custom System Roles Collection > Create Custom System Role")
+def custom_system_roles_post(transaction):
+    """
+    POST /custom-system-roles
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        custom_system_role = CustomSysRoleFactory()
+        db.session.add(custom_system_role)
+        db.session.commit()
+
+
+@hooks.before("Custom System Roles > Custom System Roles Details > Get Details")
+def custom_system_role_get_detail(transaction):
+    """
+    GET /custom-system-roles/2
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        custom_system_role = CustomSysRoleFactory()
+        db.session.add(custom_system_role)
+        db.session.commit()
+
+
+@hooks.before("Custom System Roles > Custom System Roles Details > Update Custom System Role")
+def custom_system_role_patch(transaction):
+    """
+    PATCH /custom-system-roles/2
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        custom_system_role = CustomSysRoleFactory()
+        db.session.add(custom_system_role)
+        db.session.commit()
+
+
+@hooks.before("Custom System Roles > Custom System Roles Details > Delete Custom System Role")
+def custom_system_role_delete(transaction):
+    """
+    DELETE /custom-system-roles/2
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        custom_system_role = CustomSysRoleFactory()
+        db.session.add(custom_system_role)
+        db.session.commit()
+
+
+@hooks.before("Custom System Roles > Custom System Role Details for a Panel Permission >"
+                " Custom System Role Details for a Panel Permission")
+def custom_system_roles_panel_permission(transaction):
+    """
+    GET /panel-permissions/1/custom-system-roles
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+# ------------------------- Panel Permission -------------------------
+
+
+@hooks.before("Panel Permissions > Panel Permissions Collection > List All Panel Permissions")
+def panel_permission_get_list(transaction):
+    """
+    GET /panel-permissions
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+@hooks.before("Panel Permissions > Panel Permissions Collection > Create Panel Permissions")
+def panel_permission_post(transaction):
+    """
+    POST /panel-permissions
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+@hooks.before("Panel Permissions > Panel Permission Details > Get Details")
+def panel_permission_get_detail(transaction):
+    """
+    GET /panel-permissions/10
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+@hooks.before("Panel Permissions > Panel Permission Details > Update Panel Permission")
+def panel_permission_patch(transaction):
+    """
+    PATCH /panel-permissions/10
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+@hooks.before("Panel Permissions > Panel Permission Details > Delete Panel Permission")
+def panel_permission_delete(transaction):
+    """
+    DELETE /panel-permissions/10
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
+        db.session.commit()
+
+
+@hooks.before(
+    "Panel Permissions > Panel Permission Details for a Custom System Role > "
+    "Panel Permission Details for a Custom System Role")
+def panel_permissions_custom_system_role(transaction):
+    """
+    GET /custom-system-roles/1/panel-permissions
+    :param transaction:
+    :return:
+    """
+    with stash['app'].app_context():
+        panel_permission = PanelPermissionFactory()
+        db.session.add(panel_permission)
         db.session.commit()
